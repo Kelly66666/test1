@@ -1,0 +1,20 @@
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+
+        h = ListNode(0)
+        h.next = head  # 假头
+
+        temph = h  # 指针指向当前的头
+
+        while temph.next and temph.next.next:  # 存在点1和点2
+            node1 = temph.next
+            node2 = temph.next.next
+
+            temph.next = node2   # 步1
+            node1.next = node2.next  # 步2
+            node2.next = node1  # 步3
+
+            temph = node1  # 移动指针，指向新的头
+
+        return h.next
+
