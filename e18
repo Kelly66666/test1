@@ -1,0 +1,20 @@
+def Search(i, target, oneSolution):
+    if target == 0 and len(oneSolution) == 4:  # 出口，找到正确的解了
+        output.append(oneSolution)
+        return
+    elif len(oneSolution) > 4 or i >= len(nums):  # 剪枝，超范围了
+        return
+
+    Search(i + 1, target, oneSolution)  # 不选这个数
+    Search(i + 1, target - nums[i], oneSolution + [nums[i]])   # 选这个数
+
+Search(0, target, [])
+
+output1 = []  # 这一段是用来去重的
+output2 = []
+for t in output:
+    if set(t) not in output1:
+        output1.append(set(t))
+        output2.append(t)
+
+return output2
